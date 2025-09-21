@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td img {
+      width: 80px;
+      border-radius: 8px;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background: #c0392b;
+    }
+
+    .total-container {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 20px;
+      font-weight: bold;
+      color: #27ae60;
+      margin-bottom: 30px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+    .checkout-btn, .continue-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s ease;
+    }
+
+    .checkout-btn {
+      background: #27ae60;
+    }
+
+    .checkout-btn:hover {
+      background: #219150;
+    }
+
+    .continue-btn {
+      background: #2980b9;
+    }
+
+    .continue-btn:hover {
+      background: #21618c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Your Shopping Cart</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <tr>
+          <td><img src="apple.jpg" alt="Fresh Red Apple"></td>
+          <td>Fresh Red Apple</td>
+          <td>$2.50</td>
+          <td><input type="number" value="1" min="1" onchange="updateSubtotal(this)"></td>
+          <td class="subtotal">$2.50</td>
+          <td><button class="remove-btn" onclick="removeItem(this)">Remove</button></td>
+        </tr>
+        <tr>
+          <td><img src="grapes.jpg" alt="Green Grapes"></td>
+          <td>Green Grapes</td>
+          <td>$3.50</td>
+          <td><input type="number" value="1" min="1" onchange="updateSubtotal(this)"></td>
+          <td class="subtotal">$3.50</td>
+          <td><button class="remove-btn" onclick="removeItem(this)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-container">
+      Total: <span id="total">$6.00</span>
+    </div>
+
+    <div class="btn-container">
+      <button class="continue-btn" onclick="window.location.href='products.html'">Continue Shopping</button>
+      <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    function updateSubtotal(input) {
+      const row = input.closest('tr');
+      const price = parseFloat(row.cells[2].innerText.replace('$',''));
+      const quantity = parseInt(input.value);
+      row.querySelector('.subtotal').innerText = '$' + (price * quantity).toFixed(2);
+      updateTotal();
+    }
+
+    function removeItem(button) {
+      const row = button.closest('tr');
+      row.remove();
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const subtotals = document.querySelectorAll('.subtotal');
+      let total = 0;
+      subtotals.forEach(sub => {
+        total += parseFloat(sub.innerText.replace('$',''));
+      });
+      document.getElementById('total').innerText = '$' + total.toFixed(2);
+    }
+  </script>
+</body>
+</html>

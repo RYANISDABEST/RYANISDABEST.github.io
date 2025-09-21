@@ -1,11 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Traditional Market</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      text-align: center;
+    }
+
+    h3 {
+      margin-top: 30px;
+      font-size: 1.8rem;
+      color: #2c3e50;
+    }
+
+    form {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #1abc9c;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #16a085;
+    }
+
+    /* Product card */
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 250px;
+      margin: 30px auto;
+      padding: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .product-card h4 {
+      margin: 15px 0 0;
+      font-size: 1.2rem;
+      color: #2c3e50;
+    }
+  </style>
 </head>
 <body>
-    second page
+  <h3>Home</h3> 
+
+  <!-- Search bar -->
+  <form onsubmit="searchRedirect(event)">
+    <input type="text" id="searchInput" name="query" placeholder="Search item">
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Product -->
+  <div class="product-card">
+    <a href="third.html">
+      <img src="apple.jpg" alt="apple image">
+    </a>
+    <h4>Product 1 - Fresh Apple</h4>
+  </div>
+
+  <script>
+    function searchRedirect(event) {
+      event.preventDefault(); // prevent page refresh
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+      if (query === "product 1" || query === "apple") {
+        window.location.href = "third.html";
+      } else {
+        alert("No results found for: " + query);
+      }
+    }
+  </script>
 </body>
 </html>
+
