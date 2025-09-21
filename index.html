@@ -1,27 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traditional Market</title>
-    <style>
-        h1{
-            text-align: center;
-            color: orangered;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traditional Market</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #2c3e50, #34495e);
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      transition: background 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background: #1abc9c;
+      border-radius: 5px;
+    }
+
+    .navbar form {
+      display: flex;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .navbar input[type="text"] {
+      padding: 7px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .navbar button {
+      padding: 7px 14px;
+      border: none;
+      border-radius: 5px;
+      background: #1abc9c;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .navbar button:hover {
+      background: #16a085;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: url("market-banner.jpg") no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin: 0;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-top: 15px;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Products Section */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 20px;
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 250px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      object-fit: cover;
+      height: 200px;
+    }
+
+    .product-card h4 {
+      margin: 15px 0;
+      color: #2c3e50;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Home</h1>
-    <form>
-        <input type="text" name="query" placeholder="search item">
-        <button type="submit">search</button>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="second.html">Products</a>
+      <a href="third.html">Cameras</a>
+      <a href="fourth.html">Check Out</a>
+    </div>
+    <form onsubmit="searchRedirect(event)">
+      <input type="text" id="searchInput" name="query" placeholder="Search item">
+      <button type="submit">Search</button>
     </form>
+  </div>
 
-    <h3>recommeded products</h3>
-    <a href="second.html">
-        <img src ="apple.jpg" alt="apple image">
+  <!-- Fullscreen Hero Banner -->
+  <section class="hero">
+    <h1>Welcome to the Traditional Market</h1>
+    <p>Fresh, Local, and Authentic Products</p>
+  </section>
+
+  <!-- Products -->
+  <h2 class="section-title">Recommended Products</h2>
+  <div class="products">
+    <a href="second.html" class="product-card">
+      <img src="apple.jpg" alt="apple image">
+      <h4>Fresh Apple</h4>
     </a>
-    
+    <a href="second.html" class="product-card">
+      <img src="orange.jpg" alt="orange image">
+      <h4>Juicy Oranges</h4>
+    </a>
+    <a href="second.html" class="product-card">
+      <img src="rice.jpg" alt="rice image">
+      <h4>Organic Rice</h4>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Traditional Market. All Rights Reserved.
+  </footer>
+
+  <script>
+    function searchRedirect(event) {
+      event.preventDefault(); // prevent page refresh
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      
+      if (query === "apple") {
+        window.location.href = "second.html";
+      } else {
+        alert("No results found for: " + query);
+      }
+    }
+  </script>
 </body>
 </html>
+
